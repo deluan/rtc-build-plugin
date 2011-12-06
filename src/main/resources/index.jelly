@@ -1,0 +1,5 @@
+<div>
+    This plugin integrates
+    <a href="https://jazz.net/projects/rational-team-concert">IBM's Rational Team Concert (RTC)</a>
+    with Hudson.
+</div>

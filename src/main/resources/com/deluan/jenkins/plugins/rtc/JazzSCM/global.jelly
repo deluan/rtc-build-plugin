@@ -1,0 +1,10 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout"
+         xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+
+    <f:section title="Rational Team Concert">
+        <f:entry title="Jazz command line executable">
+            <f:textbox name="rtc.jazzExecutable" value="${descriptor.jazzExecutable}"
+                       checkUrl="'${rootURL}/scm/JazzSCM/executableCheck?value='+escape(this.value)"/>
+        </f:entry>
+    </f:section>
+</j:jelly>
