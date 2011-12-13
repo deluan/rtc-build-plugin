@@ -1,4 +1,4 @@
-Jenkins RTC Plugin
+Jenkins RTC Build Plugin
 =========================
 
-This plugin integrates IBM Rational Team Concert system with Jenkins.
+This plugin integrates IBM RTC Team Build system with Jenkins.
