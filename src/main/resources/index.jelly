@@ -1,5 +1,7 @@
 <div>
     This plugin integrates
-    <a href="https://jazz.net/projects/rational-team-concert">IBM's Rational Team Concert (RTC)</a>
-    with Hudson.
+    <a href="https://jazz.net/projects/rational-team-concert/features/build">
+        IBM RTC Team Build System
+    </a>
+    with Jenkins/Hudson.
 </div>

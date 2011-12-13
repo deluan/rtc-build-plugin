@@ -44,13 +44,16 @@ public class JazzBuildRunListener extends RunListener<Run> {
 
     protected JazzBuildTool getBuildTool(Run run) {
         AbstractProject project = (AbstractProject) run.getParent();
-        JazzSCM scm = (JazzSCM) project.getScm();
-        return JazzBuildToolFactory.getBuildToolFor(scm);
+        return JazzBuildToolFactory.getBuildToolFor(project);
     }
 
+    @SuppressWarnings("unchecked")
     private boolean isJazzProject(Run run) {
         AbstractProject project = (AbstractProject) run.getParent();
-        return (project.getScm() instanceof JazzSCM);
+        boolean usesJazzSCM = (project.getScm() instanceof JazzSCM);
+        boolean usesJazzBuildTrigger = project.getTrigger(JazzBuildTrigger.class) != null;
+
+        return usesJazzSCM && usesJazzBuildTrigger;
     }
 
     private void prepareTeamBuild(Run run) {

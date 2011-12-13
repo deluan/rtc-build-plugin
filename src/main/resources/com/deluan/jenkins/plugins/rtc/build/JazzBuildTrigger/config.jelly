@@ -1,0 +1,9 @@
+<j:jelly xmlns:j="jelly:core"
+         xmlns:f="/lib/form">
+    <f:entry title="${%Build engine ID}" field="buildEngineId">
+        <f:textbox/>
+    </f:entry>
+    <f:entry title="${%Build definition ID}" field="buildDefinitionId">
+        <f:textbox/>
+    </f:entry>
+</j:jelly>

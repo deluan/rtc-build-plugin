@@ -1,6 +1,7 @@
 package com.deluan.jenkins.plugins.rtc.build
 
 import com.deluan.jenkins.plugins.rtc.JazzConfiguration
+import org.apache.commons.lang.builder.ToStringBuilder
 import org.apache.tools.ant.PropertyHelper
 
 /**
@@ -9,17 +10,21 @@ import org.apache.tools.ant.PropertyHelper
 class JazzBuildTool {
 
     private AntBuilder ant
-    private String buildToolkitPath = "C:/Arquivos de programas/ibm/TeamConcertBuild/buildsystem/buildtoolkit"
-    private String buildToolkitDefs = "${buildToolkitPath}/BuildToolkitTaskDefs.xml"
-
-    private String buildEngineId = "Jenkins"  //TODO Get from configuration
-    private String buildDefinitionId = 'teste_jenkins'
+    private String buildToolkitPath
+    private String buildToolkitDefs
+    private String buildEngineId
+    private String buildDefinitionId
     private String repositoryLocation
     private String username
     private String password
 
-    JazzBuildTool(JazzConfiguration config) {
+    JazzBuildTool(JazzConfiguration config, String buildToolkitPath, String buildEngineId, String buildDefinitionId) {
         println("========= CRIANDO ANTBUILDER ==============");
+
+        this.buildToolkitPath = buildToolkitPath
+        this.buildEngineId = buildEngineId
+        this.buildDefinitionId = buildDefinitionId
+        this.buildToolkitDefs = "${buildToolkitPath}/BuildToolkitTaskDefs.xml"
 
         repositoryLocation = config.repositoryLocation
         username = config.username
@@ -48,6 +53,10 @@ class JazzBuildTool {
             tasksDefFile.delete()
         }
         println("========= ANTBUILDER CRIADO ==============");
+    }
+
+    public static boolean checkForValidInstallation(String path) {
+        return new File("${path}/BuildToolkitTaskDefs.xml").exists()
     }
 
     @SuppressWarnings("GroovyAccessibility")
@@ -141,5 +150,13 @@ class JazzBuildTool {
                 url: url,
                 verbose: "true",
         )
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).
+                append("buildEngineId", buildEngineId).
+                append("buildDefinitionId", buildDefinitionId).
+                toString();
     }
 }
